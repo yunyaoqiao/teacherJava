@@ -19,7 +19,7 @@ public class FirstCharacterInStream502 {
     private int index;
     private int[] occurence;
     public FirstCharacterInStream502(){
-        index=0;
+        index=0;//字符在串中的位置
         occurence=new int[256];
         for (int i=0;i<256;i++){
             occurence[i]=-1;//初始哈希表所有的字母对应的位置值都是-1
