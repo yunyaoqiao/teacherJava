@@ -29,6 +29,43 @@ public class CommonNodesInLists52 {
         }
         return res;
 }
+    public static ListNode indFirstCommonNode2(ListNode pHead1, ListNode pHead2) {
+        if (pHead1==null||pHead2==null)
+            return null;
+        int count1=1,count2=1;
+        ListNode p1=pHead1;//！！对于计算链表中元素个数的节点，一定要初始化新值。不然都在pHead上做，
+        //下一步移动长字符串链表时，就会已经移动到了最末尾
+        ListNode p2=pHead2;
+        while (p1!=null){
+            p1=p1.next;
+            count1++;
+        }
+        while (p2!=null){
+            p2=p2.next;
+            count2++;
+        }
+        if (count1>count2){
+            int dif=count1-count2;//两个链表相差的元素个数
+            while (dif!=0){
+                pHead1=pHead1.next;//链表1先走dif个元素
+                dif--;
+            }
+        }
+        else {
+            int dif=count2-count1;
+            while (dif!=0){
+                pHead2=pHead2.next;
+                dif--;
+            }
+        }
+        while (pHead1!=null&&pHead2!=null){
+            if (pHead1==pHead2)
+                return pHead1;//返回第一个相等的节点
+            pHead1=pHead1.next;
+            pHead2=pHead2.next;
+        }
+        return null;
+    }
     public static void main(String[] args){
         // 1->2->3->6->7
         //    4->5↗
@@ -46,7 +83,8 @@ public class CommonNodesInLists52 {
         node5.next = node6;
         node6.next = node7;
         ListNode commonNode = indFirstCommonNode(node1,node4);
+        ListNode commonNode1 = indFirstCommonNode2(node1,node4);
         System.out.println(commonNode.val);
-
+        System.out.println(commonNode1.val);
     }
 }
