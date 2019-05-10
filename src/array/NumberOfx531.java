@@ -30,7 +30,7 @@ public class NumberOfx531 {
             else if (data[mid]<k)//中间值小，k在前半段
                 lo=mid+1;
             else
-                hi=mid;//把最高位定在中间值的位置上！
+                hi=mid;//相当于是找到了这个k值，然后要寻找第一个k:所以把数组长度截断到lo~mid之间，继续迭代
         }
         return -1;
     }
@@ -59,8 +59,8 @@ public class NumberOfx531 {
         int[] data1 = new int[]{1,2,3,3,3,3,5,6};
         int[] data2 = new int[]{1,2,3,3,3,3,4,5};
         int[] data3 = new int[]{3,3,3,3,3,3,3,3};
-//        System.out.println(getNumberOfK(data1,4));
-//        System.out.println(getNumberOfK(data2,3));
+        System.out.println(getNumberOfK(data1,4));
+        System.out.println(getNumberOfK(data2,3));
         System.out.println(getNumberOfK(data3,3));
     }
 }
