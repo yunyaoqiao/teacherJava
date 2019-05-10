@@ -121,6 +121,26 @@ public class ArraySort {
             else a[k]=simRep[i++];//左边数字小，取左边
         }
     }
+    /*private void merge(int[] arr, int start, int mid, int end) {
+        int[] temp=new int[end-start+1];    //存放排序号数据的临时区域
+        int k=0;        //临时区域的指针
+        int i=start;    //第一个有序区的指针
+        int j=mid+1;    //第二个有序区的指针
+
+        while(i<=mid && j<=end) {
+            if(arr[i]<=arr[j])
+                temp[k++]=arr[i++];
+            else
+                temp[k++]=arr[j++];
+        }
+        while(i<=mid)
+            temp[k++]=arr[i++];
+        while(j<=end)
+            temp[k++]=arr[j++];
+
+        for(k=0;k<=end-start;k++)
+            arr[k+start]=temp[k];
+    }*/
 
     public static int[] shuffle(int[] a){
         //打乱数组顺序.但是不能把数组定为static
