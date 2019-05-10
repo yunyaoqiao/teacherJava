@@ -7,8 +7,19 @@ public class GetMissingNumber532 {
         int lo=0,hi=data.length-1,mid;
         while (lo<=hi){
             mid=lo+(hi-lo)/2;
-            if (data[mid]==mid)//如果中间位置的索引（mid）与值相等（）
-
+            if (data[mid]==mid)//如果中间位置的索引（mid）与值相等（data[mid]）
+                lo=mid+1;//那么不存在的那个值（索引与值不匹配）就在后半段
+            else
+                hi=mid-1;//如果出现不匹配的情况，说明在前半段
         }
+        return lo;//不匹配的位置
+    }
+    public static void main(String[] args){
+        int[] data1 = new int[]{0,1,2,3,4,5}; //6
+        int[] data2 = new int[]{0,1,3,4,5}; //2
+        int[] data3 = new int[]{1,2}; //0
+        System.out.println(getMissingNumber(data1));
+        System.out.println(getMissingNumber(data2));
+        System.out.println(getMissingNumber(data3));
     }
 }
