@@ -1,6 +1,7 @@
 package linklist;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Stack;
 //1.输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。
 
@@ -11,6 +12,7 @@ public class PrintReverse6 {
         for (ListNode temp=listNode;temp!=null;temp=temp.next){
             stack.add(temp.val);
         }//将链表中所有的数据遍历加入栈
+
         while (!stack.isEmpty()){
             System.out.println(stack.pop());//出栈打印
         }
@@ -36,5 +38,6 @@ public class PrintReverse6 {
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
         printListFromTailToHead(head);
+        printListFromTailToHead2(head);
     }
 }
