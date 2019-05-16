@@ -44,7 +44,7 @@ public class FindContinuousSequence572 {
         for (int i=start;i<=end;i++){
             sum+=i;
         }
-        return sum;
+        return sum;//由于求和差别只是增加/减少了一共数组，可以在前一个序列的基础上求新的和
     }
     public static void main(String[] args){
         System.out.println(findContinuousSequence(15));
