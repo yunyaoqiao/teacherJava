@@ -7,7 +7,7 @@ public class ReverseWordsInSentence581 {
     // 然后以空格作为分隔符进行切分，对于切分下来的每一部分再进行翻转，得到“student. a am I”。
     public static String reverseSentence(String str) {
         if (str.trim().length()==0)
-            return str;
+            return str;//字符串没内容
         String[] temp=str.split(" ");
         String res="";
         /*String reverse = "";
