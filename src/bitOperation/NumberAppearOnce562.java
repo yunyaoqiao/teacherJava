@@ -25,7 +25,7 @@ public class NumberAppearOnce562 {
         for (int i=0;i<32;i++){
             res=res<<1;
             res=res+(bitSum[i]%3);//"bitSum[i]%3"为0，则这个唯一的数在改位上是0.为1则该位上是1.拼接后得到唯一数的二进制表示
-        }
+        }//eg：{2, 2, 5, 2}-->0、1、3、1。res=0+1;10+0;100+1;=101=5;
         /*int result=0;//二进制转化位数字
         for(int i=0;i<32;i++) {
             result=result<<1;
@@ -35,7 +35,7 @@ public class NumberAppearOnce562 {
         return res;
     }
     public static void main(String[] args) {
-        int[] data = new int[]{2, 2, 3, 5, 3, 2,3};
+        int[] data = new int[]{2, 2, 5, 2};
         int result = findNumsAppearOnce(data);
         System.out.println(result);
     }
