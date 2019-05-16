@@ -13,7 +13,7 @@ public class NumberAppearOnce562 {
             bitSum[i]=0;//初始化数字的二进制表示位上的求和结果
         for (int i=0;i<data.length;i++){
             int bitMask=1;
-            for (int j=31;j>=0;j--){//可以将一个数的二进制存储到32位的数组中
+            for (int j=31;j>=0;j--){
                 int bit=data[i]&bitMask;//通过"number"&bitMask的结果是否为0（bit=0,表明number里这一位是0），
                 // bitMask=1不断左移，可以将一个数的二进制存储到32位的数组中。
                 if (bit!=0)
@@ -21,12 +21,22 @@ public class NumberAppearOnce562 {
                 bitMask=bitMask<<1;
             }
         }
+        //!!!可以将一个数的二进制存储到32位的数组中的方法。
+        /*int number=100;
+        int bitMask=1;
+        for(int j=31;j>=0;j--) {
+            int bit=number&bitMask;  //注意arr[i]&bitMask不一定等于1或者0，有可能等于00010000
+            if(bit!=0)
+                bits[j]=1;
+            bitMask=bitMask<<1;
+        }*/
         int res=0;
         for (int i=0;i<32;i++){
             res=res<<1;
             res=res+(bitSum[i]%3);//"bitSum[i]%3"为0，则这个唯一的数在改位上是0.为1则该位上是1.拼接后得到唯一数的二进制表示
         }//eg：{2, 2, 5, 2}-->0、1、3、1。res=0+1;10+0;100+1;=101=5;
-        /*int result=0;//二进制转化位数字
+        //!!!二进制转化位数字
+        /*int result=0;
         for(int i=0;i<32;i++) {
             result=result<<1;
             result+=bits[i];
