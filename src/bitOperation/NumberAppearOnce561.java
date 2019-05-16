@@ -13,7 +13,8 @@ public class NumberAppearOnce561 {
     //这样相同的数子的任意一位都一样，出现了两次的数据会被分配到同一个子数组里。
     //eg:{2,4,3,6,3,2,5,5},异或结果：0100^0110=0010,根据倒数第二位是否为1分为两个子数组。{2，3，6，3，2} {4，5，5}
     public static int[] findNumsAppearOnce(int [] data) {
-
+        if(data==null || data.length<=0)
+            throw new RuntimeException();
         int res=0;
         for (int i=0;i<data.length;i++)
             res^=data[i];//求字符串的异或结果
@@ -21,7 +22,7 @@ public class NumberAppearOnce561 {
         int ret[]=new int[]{0,0};
 
         for (int i=0;i<data.length;i++){
-            if (((data[i]>>indexOf1)&1)==1)//判断indexOf1上的数是不是1，如果是的话相与=1。
+            if (((data[i]>>indexOf1)&1)==1)//判断indexOf1上的数是不是1（固定方法）。！！！如果是的话相与=1。
                 ret[0]=ret[0]^data[i];//indexOf1位上是1的所有数相与的结果
             else
                 ret[1]=ret[1]^data[i];
