@@ -48,7 +48,7 @@ public class DicesProbability60 {
             double ratio=probabilities[flag][i]/totalP;//每个点数和s出现的概率
             NumberFormat format=NumberFormat.getPercentInstance();
             format.setMaximumFractionDigits(5);//设置保留小数
-            System.out.println("点数和"+(i+number)+"概率："+format.format(ratio));
+            System.out.println("点数和"+(i+number)+"概率："+format.format(ratio));//可以输出百分数
         }
     }
     public static void main(String[] args) {
