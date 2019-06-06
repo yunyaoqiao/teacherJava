@@ -50,16 +50,17 @@ public static int lastRemaining_Solution2(int n, int m) {
     cur.next=head;
     cur=head;
     while (true){
-        if (cur.next==cur)
-            return cur.val;//找出了最后剩下的数
         for (int i=1;i<m;i++)
             cur=cur.next;//向后移动到第m位
+        System.out.println("删除："+cur.val);
         cur.val=cur.next.val;//删除当前节点
         cur.next=cur.next.next;//删除后，cur停止被删除节点的后一个节点上
+        if (cur.next==cur)
+            return cur.val;//找出了最后剩下的数
     }
 }
     public static void main(String[] args){
-        System.out.println(lastRemaining_Solution1(5,3)); //3
+//        System.out.println(lastRemaining_Solution1(5,3)); //3
         System.out.println(lastRemaining_Solution2(5,3)); //3
     }
 }

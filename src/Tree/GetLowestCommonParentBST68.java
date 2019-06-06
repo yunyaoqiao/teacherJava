@@ -1,5 +1,6 @@
 package Tree;
 //输入一棵树的根节点，输入两个被观察节点，求这两个节点的最低(最近)公共祖先。
+
 public class GetLowestCommonParentBST68 {
     //该题首先要和面试官确定是否为二叉树，得到肯定答复后，还要确定是否为二叉搜索树，是否有父指针，或者仅仅是普通二叉树。
     //1.树为二叉搜索树时，最低公共祖先结点的大小--->遍历找到比第一个节点大，比第二个节点小的节点即可。
@@ -20,10 +21,10 @@ public class GetLowestCommonParentBST68 {
             return root;//直到找到一个节点，位于两个节点值的中间，则找到了最低的公共祖先节点。
     }
 
-    /*
-     * 普通二叉树
-     * 将下面结点的信息利用递归s往上传递
-     */
+
+     //* 普通二叉树
+     // 将下面结点的信息利用递归s往上传递
+
     public static TreeNode getLowestCommonParent(TreeNode root,TreeNode node1,TreeNode node2) {
         if(root==null || root== node1 || root== node2)
             return root;
@@ -59,4 +60,7 @@ public class GetLowestCommonParentBST68 {
         System.out.println(getLowestCommonParentBST(root,root.left.left,root.left.right).val);
         System.out.println(getLowestCommonParent(root,root.left.left,root.left.right).val);
     }
-}
+
+
+
+    }

@@ -5,8 +5,8 @@ public class Duplicate3 {
     public boolean duplicate(int numbers[],int length,int[] duplication){
         if ((numbers==null)||(numbers.length<2)){
             return false;
-        }
-        quickSort(numbers,0,numbers.length-1);
+        }//不存在重复的情况：空串或只有一个数
+        quickSort(numbers,0,numbers.length-1);//排序数组
         for (int i=0;i<numbers.length;i++){
             System.out.println(numbers[i]);
         }

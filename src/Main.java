@@ -1,78 +1,114 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-import java.util.*;
-import java.util.Scanner;
-//public class Main {
+/**
+ * Welcome to vivo !
+ */
 public class Main {
-    static String getzuoyi(String s){
-        int n =10%s.length();
-//        System.out.print(n);
-        int index=0;
-        StringBuilder builder = new StringBuilder();
-        for(int i=0;i<s.length();i++){
-            index = (i+n)%s.length();
-            builder.append(s.charAt(index));
-        }
-        return builder.toString();
-    }
-    static boolean isLegal(String s){
-        char ch;
-        for(int i =0;i<s.length();i++){
-            if( !((s.charAt(i)>='0'&&s.charAt(i)<='9') ||
-                    (s.charAt(i)>='a'&&s.charAt(i)<='z') ||
-                    (s.charAt(i)>='A'&&s.charAt(i)<='Z')))
-            {
-                return false;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int[] arrA = parseInts(br.readLine().split(" "));
+        int[] arrB = parseInts(br.readLine().split(" "));
+        int m = arrA[0];
+        int n = arrA[1];
+        ListNode head = null;
+        ListNode pre = null;
+        for (int v : arrB) {
+            ListNode listNode = new ListNode(v);
+            if (head == null) {
+                head = listNode;
             }
+            if (pre != null) {
+                pre.next = listNode;
+            }
+            pre = listNode;
         }
-        return true;
-    }
-    public static void main(String[] args) {
-//            List<String> input = Arrays.asList("abc","def","==","acd123","44234tjg",
-//                    "aga'-=","ad--s","abd","123","abcdef","123456789012345678901234567890123456789012345678901234567890123"
-//                    ,"ccccc","ccccc","87&&^"
-//            );
-        Set hefa = new LinkedHashSet<String>();
-        List<String> feifa = new ArrayList<String>();
-        List<String> zuoyi = new ArrayList<>();
+        solution(head, m, n);
 
-        Scanner sc = new Scanner(System.in);
-//            Iterator<String> i=input.iterator();
-        while(sc.hasNext()) {
-            String s=sc.next();
-//                String s = i.next();
-            if (isLegal(s)) hefa.add(s);
-            else feifa.add(s);
+    }
+
+    private static void solution(ListNode head, int m, int n) {
+        if (head == null || m > n) {
+            return;
         }
-        // 输出（1）
-        Iterator<String> itea =hefa.iterator();
-        while(itea.hasNext()) {
-            String s= itea.next();
-            System.out.print(s+" ");
-            zuoyi.add(getzuoyi(s));
+        ListNode curNode = head;
+        int listLen = 0;
+        while (curNode != null) {
+            listLen++;
+            curNode = curNode.next;
         }
-        System.out.println();
-        // 输出（2）
-        itea =feifa.iterator();
-        while(itea.hasNext()) {
-            System.out.print(itea.next()+" ");
+        if (n > listLen) {
+            return;
         }
-        System.out.println();
-        // 输出（3）
-        itea = zuoyi.iterator();
-        while(itea.hasNext()) {
-            System.out.print(itea.next()+" ");
+        ListNode headListLastNode = head, newList1 = head;
+        for (int i = 0; i < m-1; i++) {
+            headListLastNode = newList1;
+            newList1 = newList1.next;
         }
-        System.out.println();
-        //输出（4）
-        zuoyi.sort((o1,o2)->{
-            return o1.compareTo(o2);
-        });
-        itea = zuoyi.iterator();
-        while(itea.hasNext()) {
-            System.out.print(itea.next()+" ");
+        ListNode newList1LastNode = head, newList2 = head;
+        for (int i = 0; i < n; i++) {
+            newList1LastNode = newList2;
+            newList2 = newList2.next;
+        }
+        headListLastNode.next = null;
+        newList1LastNode.next = null;
+
+        ListNode reverseList = inverseListNodeByThreePointer(newList1);
+        headListLastNode.next = reverseList;
+        newList1.next = newList2;
+
+        while (head != null) {
+            System.out.print(head.val + " ");
+            head = head.next;
         }
     }
-//    }
+
+    public static ListNode inverseListNodeByThreePointer(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode preNode = null, curNode = head, nextNode;
+        while (curNode != null) {
+            nextNode = curNode.next;
+            curNode.next = preNode;
+            preNode = curNode;
+            curNode = nextNode;
+        }
+        return preNode;
+    }
+
+
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int v) {
+            val = v;
+            next = null;
+        }
+
+        public String toString() {
+            String str = val + " ";
+            ListNode node = next;
+            while (node != null) {
+                str += node.val + " ";
+                node = node.next;
+            }
+            return str;
+        }
+    }
+
+    private static int[] parseInts(String[] strArr) {
+        if (strArr == null || strArr.length == 0) {
+            return new int[0];
+        }
+        int[] intArr = new int[strArr.length];
+        for (int i = 0; i < intArr.length; i++) {
+            intArr[i] = Integer.parseInt(strArr[i]);
+        }
+        return intArr;
+    }
+
 }
-
-
