@@ -33,10 +33,10 @@ public class BeanFactory {
                 foo = (Element) i.next();
                 //获取bean的属性id和class
                 Attribute id = foo.attribute("id");
-                Attribute cls = foo.attribute("class");
+                Attribute cls = foo.attribute("class");//class文件的包
 
                 //利用Java反射机制，通过class的名称获取Class对象
-                Class bean = Class.forName(cls.getText());
+                Class bean = Class.forName(cls.getText());//1.Java反射机制中的获取Class对象
 
                 //获取对应class的信息
                 java.beans.BeanInfo info = java.beans.Introspector.getBeanInfo(bean);
@@ -45,9 +45,9 @@ public class BeanFactory {
                 //设置值的方法
                 Method mSet = null;
                 //创建一个对象
-                Object obj = bean.newInstance();
+                Object obj = bean.newInstance();//2.创建类的对象
 
-                //遍历该bean的property属性
+                //遍历该bean的property属性----采用属性注入
                 for (Iterator ite = foo.elementIterator("property"); ite.hasNext();) {
                     Element foo2 = (Element) ite.next();
                     //获取该property的name属性
@@ -63,9 +63,11 @@ public class BeanFactory {
 
                     for (int k = 0; k < pd.length; k++) {
                         if (pd[k].getName().equalsIgnoreCase(name.getText())) {
-                            mSet = pd[k].getWriteMethod();
+                            mSet = pd[k].getWriteMethod();//3.获得用于写入属性值的方法。
+                            // java.beans类 PropertyDescriptor
+
                             //利用Java的反射极致调用对象的某个set方法，并将值设置进去
-                            mSet.invoke(obj, value);
+                            mSet.invoke(obj, value);//4.利用修改修饰值的方法，修改对象属性
                         }
                     }
                 }
