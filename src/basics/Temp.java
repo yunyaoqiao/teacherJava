@@ -1,4 +1,4 @@
-package Tree;
+package basics;
 
 public class Temp {
     static class TreeNode<T> {

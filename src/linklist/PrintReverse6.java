@@ -10,15 +10,11 @@ public class PrintReverse6 {
     public static ArrayList<Integer> printListFromTailToHead(ListNode listNode){
         Stack<Integer> stack=new Stack<>();
         for (ListNode temp=listNode;temp!=null;temp=temp.next){
-            stack.add(temp.val);
+            stack.push(temp.val);//注意：是插入链表中的节点数值
         }//将链表中所有的数据遍历加入栈
-
-        while (!stack.isEmpty()){
-            System.out.println(stack.pop());//出栈打印
-        }
         ArrayList<Integer> res = new ArrayList<Integer>();
-        while(listNode !=null){
-            res.add(listNode.val);
+        while (!stack.isEmpty()){
+            res.add(stack.pop());//出栈打印
             listNode = listNode.next;
         }
         return res;

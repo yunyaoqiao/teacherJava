@@ -1,8 +1,7 @@
-package array;
+package basics;
 
 
 import edu.princeton.cs.algs4.StdOut;
-import sun.misc.FpUtils;
 
 import java.util.*;
 

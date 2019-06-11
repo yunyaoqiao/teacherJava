@@ -11,7 +11,7 @@ public class FindInTwoDimension4 {
         int n=array[0].length-1;//列
         int v=array[m][n];
         while (target!=v){
-            if (m<array.length-1&&n>0){
+            if (m<array.length-1&&n>0){//注意m、n的取值范围，这是停止判断的重要条件
                 if (target<v)
                     n--;
                 else if (target>v)
